@@ -1,0 +1,581 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.32701195216227,
+          39.54733157000318
+        ],
+        "bbox": [
+          -107.32701195216227,
+          39.54733157000318,
+          -107.32701195216227,
+          39.54733157000318
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "OBJECTID": 10,
+        "TYPE": "County Law Enforcement",
+        "NAME": "Garfield County Sheriff & Jail",
+        "ADDRESS": "107 8th St",
+        "CITY": "Glenwood Springs",
+        "PHONE": "970-945-0453",
+        "COMMENT": " ",
+        "SHORT_NAME": "Sheriff",
+        "Lat": 39.5473,
+        "Long": -107.327
+      },
+      "id": 10,
+      "bbox": [
+        -107.32701195216227,
+        39.54733157000318,
+        -107.32701195216227,
+        39.54733157000318
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.32637332468686,
+          39.54721839568002
+        ],
+        "bbox": [
+          -107.32637332468686,
+          39.54721839568002,
+          -107.32637332468686,
+          39.54721839568002
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "OBJECTID": 11,
+        "TYPE": "County",
+        "NAME": "Garfield County Courthouse",
+        "ADDRESS": "109 8th St",
+        "CITY": "Gkenwood Springs",
+        "PHONE": "970-945-1377",
+        "COMMENT": " ",
+        "SHORT_NAME": "Courthouse",
+        "Lat": 39.5472,
+        "Long": -107.326
+      },
+      "id": 11,
+      "bbox": [
+        -107.32637332468686,
+        39.54721839568002,
+        -107.32637332468686,
+        39.54721839568002
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.32660384186283,
+          39.54655369221503
+        ],
+        "bbox": [
+          -107.32660384186283,
+          39.54655369221503,
+          -107.32660384186283,
+          39.54655369221503
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "OBJECTID": 13,
+        "TYPE": "County",
+        "NAME": "Garfield County Administration Building",
+        "ADDRESS": "108 8th St",
+        "CITY": "Glenwood Springs",
+        "PHONE": "970-945-1377",
+        "COMMENT": " ",
+        "SHORT_NAME": "County Admin",
+        "Lat": 39.5465,
+        "Long": -107.327
+      },
+      "id": 13,
+      "bbox": [
+        -107.32660384186283,
+        39.54655369221503,
+        -107.32660384186283,
+        39.54655369221503
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.7852225586463,
+          39.539978969481325
+        ],
+        "bbox": [
+          -107.7852225586463,
+          39.539978969481325,
+          -107.7852225586463,
+          39.539978969481325
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "OBJECTID": 31,
+        "TYPE": "County",
+        "NAME": "Garfield County Fairgrounds",
+        "ADDRESS": "1001 Railroad Avenue",
+        "CITY": "Rifle",
+        "PHONE": "970-625-2514",
+        "COMMENT": " ",
+        "SHORT_NAME": "Fairgrounds",
+        "Lat": 39.54,
+        "Long": -107.785
+      },
+      "id": 31,
+      "bbox": [
+        -107.7852225586463,
+        39.539978969481325,
+        -107.7852225586463,
+        39.539978969481325
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.90913931901808,
+          39.515045429348206
+        ],
+        "bbox": [
+          -107.90913931901808,
+          39.515045429348206,
+          -107.90913931901808,
+          39.515045429348206
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "OBJECTID": 44,
+        "TYPE": "County Landfill",
+        "NAME": "Garfield County Landfill",
+        "ADDRESS": "0075 County Road 246",
+        "CITY": "Rifle",
+        "PHONE": "970-625-2516",
+        "COMMENT": "Anvil Points",
+        "SHORT_NAME": "Landfill",
+        "Lat": 39.515,
+        "Long": -107.909
+      },
+      "id": 44,
+      "bbox": [
+        -107.90913931901808,
+        39.515045429348206,
+        -107.90913931901808,
+        39.515045429348206
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.78160965327577,
+          39.546105164355325
+        ],
+        "bbox": [
+          -107.78160965327577,
+          39.546105164355325,
+          -107.78160965327577,
+          39.546105164355325
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "OBJECTID": 88,
+        "TYPE": "County",
+        "NAME": "Garfield County Court Annex",
+        "ADDRESS": "200 E 18th St",
+        "CITY": "Rifle",
+        "PHONE": "970-625-5100",
+        "COMMENT": " ",
+        "SHORT_NAME": "Courts",
+        "Lat": 39.5461,
+        "Long": -107.782
+      },
+      "id": 88,
+      "bbox": [
+        -107.78160965327577,
+        39.546105164355325,
+        -107.78160965327577,
+        39.546105164355325
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.78406380738588,
+          39.54157917275542
+        ],
+        "bbox": [
+          -107.78406380738588,
+          39.54157917275542,
+          -107.78406380738588,
+          39.54157917275542
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "OBJECTID": 90,
+        "TYPE": "County",
+        "NAME": "Garfield County Health & Human Services",
+        "ADDRESS": "195 W 14th St",
+        "CITY": "Rifle",
+        "PHONE": "970-625-5282",
+        "COMMENT": " ",
+        "SHORT_NAME": "Human Svcs",
+        "Lat": 39.5416,
+        "Long": -107.784
+      },
+      "id": 90,
+      "bbox": [
+        -107.78406380738588,
+        39.54157917275542,
+        -107.78406380738588,
+        39.54157917275542
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.72469635250172,
+          39.523166830847934
+        ],
+        "bbox": [
+          -107.72469635250172,
+          39.523166830847934,
+          -107.72469635250172,
+          39.523166830847934
+        ]
+      },
+      "properties": {
+        "FID": 7,
+        "OBJECTID": 2552,
+        "TYPE": "County Airport",
+        "NAME": "Rifle-Garfield County Airport",
+        "ADDRESS": "375 CR352",
+        "CITY": "Rifle",
+        "PHONE": "970-625-1091",
+        "COMMENT": " ",
+        "SHORT_NAME": "Airport",
+        "Lat": 39.5232,
+        "Long": -107.725
+      },
+      "id": 2552,
+      "bbox": [
+        -107.72469635250172,
+        39.523166830847934,
+        -107.72469635250172,
+        39.523166830847934
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.02564877336327,
+          39.4406203974552
+        ],
+        "bbox": [
+          -108.02564877336327,
+          39.4406203974552,
+          -108.02564877336327,
+          39.4406203974552
+        ]
+      },
+      "properties": {
+        "FID": 8,
+        "OBJECTID": 4963,
+        "TYPE": "County Law Enforcement",
+        "NAME": "Garfield County Sheriff Annex",
+        "ADDRESS": "1777 South Battlement Pkwy",
+        "CITY": "Parachute",
+        "PHONE": "970-665-0214",
+        "COMMENT": " ",
+        "SHORT_NAME": "Sheriff",
+        "Lat": 39.4406,
+        "Long": -108.026
+      },
+      "id": 4963,
+      "bbox": [
+        -108.02564877336327,
+        39.4406203974552,
+        -108.02564877336327,
+        39.4406203974552
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.32660429026772,
+          39.54638114114753
+        ],
+        "bbox": [
+          -107.32660429026772,
+          39.54638114114753,
+          -107.32660429026772,
+          39.54638114114753
+        ]
+      },
+      "properties": {
+        "FID": 9,
+        "OBJECTID": 4968,
+        "TYPE": "County",
+        "NAME": "Garfield County Administration Annex",
+        "ADDRESS": "810 Pitkin Ave",
+        "CITY": "Glenwood Springs",
+        "PHONE": "970-945-1377",
+        "COMMENT": " ",
+        "SHORT_NAME": "County Admin",
+        "Lat": 39.5464,
+        "Long": -107.327
+      },
+      "id": 4968,
+      "bbox": [
+        -107.32660429026772,
+        39.54638114114753,
+        -107.32660429026772,
+        39.54638114114753
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.32563946328976,
+          39.546886059328976
+        ],
+        "bbox": [
+          -107.32563946328976,
+          39.546886059328976,
+          -107.32563946328976,
+          39.546886059328976
+        ]
+      },
+      "properties": {
+        "FID": 10,
+        "OBJECTID": 4969,
+        "TYPE": "County",
+        "NAME": "Garfield County Human Resources",
+        "ADDRESS": "201 8th Street",
+        "CITY": "Glenwood Springs",
+        "PHONE": "970-945-1377",
+        "COMMENT": " ",
+        "SHORT_NAME": "Garfield Hum Rsrcs",
+        "Lat": 39.5469,
+        "Long": -107.326
+      },
+      "id": 4969,
+      "bbox": [
+        -107.32563946328976,
+        39.546886059328976,
+        -107.32563946328976,
+        39.546886059328976
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.71608984767775,
+          39.51755316496691
+        ],
+        "bbox": [
+          -107.71608984767775,
+          39.51755316496691,
+          -107.71608984767775,
+          39.51755316496691
+        ]
+      },
+      "properties": {
+        "FID": 11,
+        "OBJECTID": 4970,
+        "TYPE": "County Law Enforcement",
+        "NAME": "Garfield County Sheriff Annex",
+        "ADDRESS": "106 CR333A",
+        "CITY": "Rifle",
+        "PHONE": "970-665-0200",
+        "COMMENT": " ",
+        "SHORT_NAME": "Sheriff",
+        "Lat": 39.5175,
+        "Long": -107.716
+      },
+      "id": 4970,
+      "bbox": [
+        -107.71608984767775,
+        39.51755316496691,
+        -107.71608984767775,
+        39.51755316496691
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.71630665305345,
+          39.51590179004818
+        ],
+        "bbox": [
+          -107.71630665305345,
+          39.51590179004818,
+          -107.71630665305345,
+          39.51590179004818
+        ]
+      },
+      "properties": {
+        "FID": 12,
+        "OBJECTID": 4971,
+        "TYPE": "County Law Enforcement",
+        "NAME": "Garfield County Criminal Justice Services",
+        "ADDRESS": "0244 CR 333A",
+        "CITY": "Rifle",
+        "PHONE": "970-665-6110",
+        "COMMENT": " ",
+        "SHORT_NAME": "Comm Corr",
+        "Lat": 39.5159,
+        "Long": -107.716
+      },
+      "id": 4971,
+      "bbox": [
+        -107.71630665305345,
+        39.51590179004818,
+        -107.71630665305345,
+        39.51590179004818
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.71548144139615,
+          39.515215518739524
+        ],
+        "bbox": [
+          -107.71548144139615,
+          39.515215518739524,
+          -107.71548144139615,
+          39.515215518739524
+        ]
+      },
+      "properties": {
+        "FID": 13,
+        "OBJECTID": 4972,
+        "TYPE": "County",
+        "NAME": "Garfield County Road & Bridge Administration",
+        "ADDRESS": "298 CR 333A",
+        "CITY": "Rifle",
+        "PHONE": "970-625-8601",
+        "COMMENT": " ",
+        "SHORT_NAME": "Road & Bridge",
+        "Lat": 39.5152,
+        "Long": -107.715
+      },
+      "id": 4972,
+      "bbox": [
+        -107.71548144139615,
+        39.515215518739524,
+        -107.71548144139615,
+        39.515215518739524
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.71566202270199,
+          39.514366361547935
+        ],
+        "bbox": [
+          -107.71566202270199,
+          39.514366361547935,
+          -107.71566202270199,
+          39.514366361547935
+        ]
+      },
+      "properties": {
+        "FID": 14,
+        "OBJECTID": 4973,
+        "TYPE": "County",
+        "NAME": "Garfield County Road & Bridge Motor Pool",
+        "ADDRESS": "298 CR 333A",
+        "CITY": "Rifle",
+        "PHONE": "970-625-8601",
+        "COMMENT": " ",
+        "SHORT_NAME": "Motor Pool",
+        "Lat": 39.5144,
+        "Long": -107.716
+      },
+      "id": 4973,
+      "bbox": [
+        -107.71566202270199,
+        39.514366361547935,
+        -107.71566202270199,
+        39.514366361547935
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.78513914395087,
+          39.54200183368936
+        ],
+        "bbox": [
+          -107.78513914395087,
+          39.54200183368936,
+          -107.78513914395087,
+          39.54200183368936
+        ]
+      },
+      "properties": {
+        "FID": 15,
+        "OBJECTID": 6175,
+        "TYPE": "County",
+        "NAME": "Garfield County Administration Bldg",
+        "ADDRESS": "195 W 14th St Bldg D",
+        "CITY": "Rifle",
+        "PHONE": " ",
+        "COMMENT": " ",
+        "SHORT_NAME": "County Admin",
+        "Lat": 39.542,
+        "Long": -107.785
+      },
+      "id": 6175,
+      "bbox": [
+        -107.78513914395087,
+        39.54200183368936,
+        -107.78513914395087,
+        39.54200183368936
+      ]
+    }
+  ]
+}
