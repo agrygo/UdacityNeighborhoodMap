@@ -20,13 +20,27 @@ function initMap(){
     //used converted esri JSON file to display locations
     map.data.loadGeoJson('CountyBuildings.geojson');
     /*map.data.setStyle({
-        fillColor: 'blue'
+        icon: 'http://localhost/~andreagrygo/NeighborhoodMap/content/map-marker.svg'
         
     });*/
 
-    var features = $.getJSON('CountyBuildings.geojson');
-    console.log(features);
-
+    $.getJSON('CountyBuildings.geojson', function(data){
+            console.log(data);
+            console.log(data.features.length);
+            var names = [];
+            for (i=0; i<data.features.length; i++){
+                names.push(data.features[i].properties.SHORT_NAME);
+                console.log(names);
+            }
+    });
+        /*var names = [];
+        var len = data.responseJSON.features.length;
+        console.log(len);
+        $.each(data, function(i, SHORT_NAME){
+            names.push(SHORT_NAME);
+            console.log(names);
+        })*/
+            
     //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
         content: ""
