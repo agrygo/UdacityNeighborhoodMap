@@ -1,4 +1,9 @@
 var map;
+//var names = [];
+var list = [];
+var locs; 
+var locations;
+
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
   type: "FeatureCollection",
@@ -11,12 +16,20 @@ for (var i = 0; i < arcgis.features.length; i++) {
   FeatureCollection.features.push(feature)
 };
 */
+
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 39.563513 , lng: -107.546957},  //approx center in New Castle
         zoom: 10
     });
 
+    getData();
+
+    ko.applyBindings(new appViewModel());
+}
+
+//MODEL
+function getData(){
     //used converted esri JSON file to display locations
     map.data.loadGeoJson('CountyBuildings.geojson');
     /*map.data.setStyle({
@@ -24,29 +37,56 @@ function initMap(){
         
     });*/
 
-    $.getJSON('CountyBuildings.geojson', function(data){
+    /*$.getJSON('CountyBuildings.geojson', function(data){
+        console.log(data);
+        console.log(data.features.length);
+        for (i=0; i<data.features.length; i++){
+            names.push(data.features[i].properties.SHORT_NAME);
+        }
+        console.log(names);    
+    });*/
+    
+    //ajax call to get feature information from geojson file
+    $.ajax({
+        dataType: 'json',
+        url: 'CountyBuildings.geojson',
+        //not passing any data: parameters such as query
+        success: function(data){
             console.log(data);
             console.log(data.features.length);
-            var names = [];
             for (i=0; i<data.features.length; i++){
-                names.push(data.features[i].properties.SHORT_NAME);
-                console.log(names);
+                list.push(data.features[i].properties.SHORT_NAME);
             }
+            console.log(list);
+            createList();
+        }
     });
-        /*var names = [];
-        var len = data.responseJSON.features.length;
-        console.log(len);
-        $.each(data, function(i, SHORT_NAME){
-            names.push(SHORT_NAME);
-            console.log(names);
-        })*/
+
+}    
             
+//filter array for unique location names
+function createList(){
+    locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
+    console.log(locs); 
+    //do WAY more work than needed to make this a KO array
+    locations = [];
+    for (var i=0; i<locs.length; i++) {
+        locations.push ({shortname: locs[i]});
+        console.log(locations);
+    }
+    console.log(locations);
+    
+}
+
+//VIEW MODEL  (set up KO) 
+function appViewModel() {   
+
     //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
         content: ""
     }); 
 
-    //click event for markers and create infoWindow data
+    //click event for markers and set infoWindow data
     map.data.addListener('click', function(event){
         name = event.feature.f.NAME;
         address = event.feature.f.ADDRESS;
@@ -57,7 +97,11 @@ function initMap(){
         var anchor = new google.maps.MVCObject();
         anchor.set("position", event.latLng);
         infoWindow.open(map, anchor);
-    })
+    });
+
+    var self = this;
+        self.shortnames = ko.observableArray();
+        shortnames.push(locations);
+}
 
     
-}
