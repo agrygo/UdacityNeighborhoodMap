@@ -143,6 +143,4 @@ function appViewModel(locations) {
 };
   */ 
 
-var locData = function(locations){
-    this.locations = ko.observableArray(locations);
-}  
+ 
