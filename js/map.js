@@ -17,16 +17,19 @@ for (var i = 0; i < arcgis.features.length; i++) {
 };
 */
 
+//VIEW
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 39.563513 , lng: -107.546957},  //approx center in New Castle
         zoom: 10
     });
-
+debugger;
     getData();
-
     ko.applyBindings(new appViewModel());
 }
+
+
+
 
 //MODEL
 function getData(){
@@ -76,10 +79,11 @@ function createList(){
     }
     console.log(locations);
     
+    locationsListView.init();
 }
 
 //VIEW MODEL  (set up KO) 
-function appViewModel() {   
+function appViewModel(locations) {   
 
     //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
@@ -99,9 +103,39 @@ function appViewModel() {
         infoWindow.open(map, anchor);
     });
 
+    locationsListView.init();
+    
+
+
     var self = this;
-        self.shortnames = ko.observableArray();
-        shortnames.push(locations);
+        self.locations = ko.observableArray(locations);
+        
 }
 
-    
+ //views for locations list; init fxn stores connections, render shows locations
+var locationsListView = {
+    init: function(){
+        //DOM element for location name
+        this.locListElem = document.getElementById('locationList');
+
+        //update list in DOM with location names
+        this.render()
+    },
+
+    render: function(){
+        //use global locations list
+
+        //create empty locations list
+        this.locListElem.innerHTML = "";
+
+        console.log(locations);
+
+        //loop over locations and populate list
+        for (i=0; i<locations.length; i++){
+            elem = document.createElement('li');
+            elem.textContent = location;
+            this.locListElem.appendChild(elem);
+        }
+    }
+};
+   

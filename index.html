@@ -4,24 +4,40 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
         <title>Garfield County Offices &amp; Parking</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="css/map.css">
     </head>
     <body>
-        
-            <!-- <div id="sites" class="panel">
-                <table>
-                    <tbody data-bind="foreach: shortnames">
-                        <tr> 
-                            <td><select data-bind="options: $root.shortnames, optionsText: 'shortname'"></select></td>
-                           
-                        </tr>
-                    </tbody>    
-                </table>
-            </div> -->
+    <!-- <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p>test</p>
+            </div>
+        </div>    
+    </nav> -->
+        <div class="container-fluid">
+            <div class="sites-view">
+                <p>Garfield County Offices</p>
+                <span><ul id="locationList"></ul></span>
+                    <!-- <div id="sites" class="panel">
+                        <p>test</p>
+                        <table>
+                            <tbody data-bind="foreach: shortnames">
+                                <tr> 
+                                    <td><select data-bind="options: $root.shortnames, optionsText: 'shortname'"></select></td>
+                                   
+                                </tr>
+                            </tbody>    
+                        </table>
+                    </div> -->
+
+               
+            </div>     
             <div id="map"></div>
-       
+        </div>
       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script> 
         <!-- <script src="https://unpkg.com/terraformer@1.0.7"></script>
         <script src="https://unpkg.com/terraformer-arcgis-parser@1.0.5"></script>   -->
