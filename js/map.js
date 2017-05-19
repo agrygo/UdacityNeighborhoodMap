@@ -32,7 +32,7 @@ function initMap(){
 
 
 //MODEL
-function getData(){
+function getData(foo){
     //used converted esri JSON file to display locations
     map.data.loadGeoJson('CountyBuildings.geojson');
     /*map.data.setStyle({
@@ -61,26 +61,16 @@ function getData(){
                 list.push(data.features[i].properties.SHORT_NAME);
             }
             console.log(list);
-            createList();
+            //filter array for unique location names
+            locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
+            console.log(locs);
+            foo.push(locs);
+            console.log(foo);
         }
     });
 
 }    
             
-//filter array for unique location names
-function createList(){
-    locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
-    console.log(locs); 
-    //do WAY more work than needed to make this a KO array
-    locations = [];
-    for (var i=0; i<locs.length; i++) {
-        locations.push ({shortname: locs[i]});
-        console.log(locations);
-    }
-    console.log(locations);
-    
-    //locationsListView.init();
-}
 
 //VIEW MODEL  (set up KO) 
 function appViewModel(locations) {   
@@ -104,13 +94,8 @@ function appViewModel(locations) {
         infoWindow.open(map, anchor);
     });
 
-    //locationsListView.init();
-    self.locs = ko.observableArray([locations]);
-    console.log(locs);
-
-
-    
-    self.locations = ko.observableArray(locations);
+    this.OAlocations = ko.observableArray();
+    getData(this.OAlocations);
         
 }
 
