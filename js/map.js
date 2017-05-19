@@ -23,7 +23,7 @@ function initMap(){
         center: {lat: 39.563513 , lng: -107.546957},  //approx center in New Castle
         zoom: 10
     });
-debugger;
+
     getData();
     ko.applyBindings(new appViewModel());
 }
@@ -79,11 +79,12 @@ function createList(){
     }
     console.log(locations);
     
-    locationsListView.init();
+    //locationsListView.init();
 }
 
 //VIEW MODEL  (set up KO) 
 function appViewModel(locations) {   
+    var self = this;
 
     //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
@@ -103,17 +104,19 @@ function appViewModel(locations) {
         infoWindow.open(map, anchor);
     });
 
-    locationsListView.init();
+    //locationsListView.init();
+    self.locs = ko.observableArray([locations]);
+    console.log(locs);
+
+
     
-
-
-    var self = this;
-        self.locations = ko.observableArray(locations);
+    self.locations = ko.observableArray(locations);
         
 }
 
  //views for locations list; init fxn stores connections, render shows locations
-var locationsListView = {
+/*var locationsListView = {
+    alert("in view");
     init: function(){
         //DOM element for location name
         this.locListElem = document.getElementById('locationList');
@@ -138,4 +141,8 @@ var locationsListView = {
         }
     }
 };
-   
+  */ 
+
+var locData = function(locations){
+    this.locations = ko.observableArray(locations);
+}  
