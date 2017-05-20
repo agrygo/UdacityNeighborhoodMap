@@ -18,10 +18,9 @@
         <div class="container-fluid">
             <div class="sites-view">
                 <p>Garfield County Offices</p>
-                <tbody data-bind="foreach: OAlocations">
-                    <tr>
-                        <td data-bind="text: array()"></td>
-                    </tr>
+                <ul data-bind="foreach: OAlocations">
+                    <li data-bind="text: name"></li>
+                </ul>    
                 </tbody>        
                     <!-- <div id="sites" class="panel">
                         <p>test</p>

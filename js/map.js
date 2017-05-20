@@ -3,6 +3,7 @@ var map;
 var list = [];
 var locs; 
 var locations;
+var array;
 
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
@@ -66,6 +67,7 @@ function getData(array){
             console.log(locs);
             array.push(locs);
             console.log(array());
+            return array;
         }
     });
 
@@ -94,9 +96,9 @@ function appViewModel(locations) {
         infoWindow.open(map, anchor);
     });
 
-    
 
-    this.OAlocations = ko.observableArray();
+
+    self.OAlocations = ko.observableArray();
     getData(this.OAlocations);
         
 }
