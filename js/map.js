@@ -24,7 +24,7 @@ function initMap(){
         zoom: 10
     });
 
-    getData();
+    //getData();
     ko.applyBindings(new appViewModel());
 }
 
@@ -32,7 +32,7 @@ function initMap(){
 
 
 //MODEL
-function getData(foo){
+function getData(array){
     //used converted esri JSON file to display locations
     map.data.loadGeoJson('CountyBuildings.geojson');
     /*map.data.setStyle({
@@ -64,8 +64,8 @@ function getData(foo){
             //filter array for unique location names
             locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
             console.log(locs);
-            foo.push(locs);
-            console.log(foo);
+            array.push(locs);
+            console.log(array());
         }
     });
 
@@ -93,6 +93,8 @@ function appViewModel(locations) {
         anchor.set("position", event.latLng);
         infoWindow.open(map, anchor);
     });
+
+    
 
     this.OAlocations = ko.observableArray();
     getData(this.OAlocations);
