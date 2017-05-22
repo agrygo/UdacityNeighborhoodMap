@@ -3,7 +3,7 @@ var map;
 var list = [];
 var locs; 
 var locations;
-var array;
+var OAlocations;
 
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
@@ -33,7 +33,7 @@ function initMap(){
 
 
 //MODEL
-function getData(array){
+function getData(obsarray){
     //used converted esri JSON file to display locations
     map.data.loadGeoJson('CountyBuildings.geojson');
     /*map.data.setStyle({
@@ -65,9 +65,9 @@ function getData(array){
             //filter array for unique location names
             locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
             console.log(locs);
-            array.push(locs);
-            console.log(array());
-            return array;
+            
+            obsarray(locs);      
+            console.log(obsarray());
         }
     });
 
