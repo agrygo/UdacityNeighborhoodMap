@@ -4,6 +4,7 @@ var list = [];
 var locs; 
 var locations;
 var OAlocations;
+var obsarray;
 
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
@@ -59,25 +60,38 @@ function getData(obsarray){
             console.log(data);
             console.log(data.features.length);
             for (i=0; i<data.features.length; i++){
-                list.push(data.features[i].properties.SHORT_NAME);
+                list.push(data.features[i].properties.NAME);
             }
             console.log(list);
             //filter array for unique location names
             locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
             console.log(locs);
             
-            obsarray(locs);      
+            obsarray(list);      
             console.log(obsarray());
         }
     });
+}   
 
-}    
-            
+function filterData(obs, comp, obsarray){
+    console.log(obsarray);
+    //if self.filter is empty, return the obs array
+    if (!obs){
+        return this.items();
+    } else {
+        var filter = obs.toLowerCase();
+        return ko.utils.arrayFilter(obsarray, function(item){
+            return item.name.toLowerCase().indexOf(filter) > -1;
+        });
+    }
+}
 
+
+    
 //VIEW MODEL  (set up KO) 
 function appViewModel(locations) {   
     var self = this;
-
+debugger;
     //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
         content: ""
@@ -96,10 +110,13 @@ function appViewModel(locations) {
         infoWindow.open(map, anchor);
     });
 
-
-
     self.OAlocations = ko.observableArray();
-    getData(this.OAlocations);
+    self.filter = ko.observable();
+    getData(self.OAlocations, self.filtered = ko.computed(filterData(self.filter, self.filtered, obsarray)));
+
+    
+
+    
         
 }
 
