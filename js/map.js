@@ -69,30 +69,18 @@ function getData(obsarray){
             
             obsarray(list);      
             console.log(obsarray());
+            
         }
     });
 }   
 
-function filterData(obs, comp, obsarray){
-    console.log(obsarray);
-    //if self.filter is empty, return the obs array
-    if (!obs){
-        return this.items();
-    } else {
-        var filter = obs.toLowerCase();
-        return ko.utils.arrayFilter(obsarray, function(item){
-            return item.name.toLowerCase().indexOf(filter) > -1;
-        });
-    }
-}
 
 
     
 //VIEW MODEL  (set up KO) 
 function appViewModel(locations) {   
     var self = this;
-debugger;
-    //create infoWindow 
+   //create infoWindow 
     infoWindow = new google.maps.InfoWindow ({
         content: ""
     }); 
@@ -111,10 +99,22 @@ debugger;
     });
 
     self.OAlocations = ko.observableArray();
-    self.filter = ko.observable();
-    getData(self.OAlocations, self.filtered = ko.computed(filterData(self.filter, self.filtered, obsarray)));
+    getData(self.OAlocations);
 
-    
+    self.filter = ko.observable();
+    self.filtered = ko.computed(function(){
+         //if self.filter is empty, return the obs array
+        console.log("kocomputed");
+        if (!self.filter()){
+            return self.OAlocations();
+        } else {
+            var filter = self.filter().toLowerCase();
+            return ko.utils.arrayFilter(self.OAlocations(), function(item){
+            return item.name.toLowerCase().indexOf(filter) > -1;
+            });
+        }
+    });
+
 
     
         
