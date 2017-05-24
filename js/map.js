@@ -64,10 +64,17 @@ function getData(obsarray){
             }
             console.log(list);
             //filter array for unique location names
-            locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
+            //locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
+            //console.log(locs);
+            
+            //make array of objects with name property
+            locs = [];
+            for (i=0; i<list.length; i++){
+                locs.push({"name": list[i]});              
+            }
             console.log(locs);
             
-            obsarray(list);      
+            obsarray(locs);      
             console.log(obsarray());
             
         }
