@@ -1,5 +1,6 @@
 var map;
 //var names = [];
+var mapfeatures;
 var list = [];
 var locs; 
 var locations;
@@ -36,7 +37,15 @@ function initMap(){
 //MODEL
 function getData(obsarray){
     //used converted esri JSON file to display locations
-    map.data.loadGeoJson('CountyBuildings.geojson');
+    //mapfeatures = map.data.loadGeoJson('CountyBuildings.geojson');
+    
+    /*$.getJSON('CountyBuildings.geojson', function(data){
+        mapfeatures = map.data.addGeoJson(data);
+        console.log(mapfeatures.length);
+
+
+    });*/
+
     /*map.data.setStyle({
         icon: 'http://localhost/~andreagrygo/NeighborhoodMap/content/map-marker.svg'
         
@@ -59,29 +68,60 @@ function getData(obsarray){
         success: function(data){
             console.log(data);
             console.log(data.features.length);
+            //create array of location names and marker info
+            locs = [];
             for (i=0; i<data.features.length; i++){
-                list.push(data.features[i].properties.NAME);
+                var lat = data.features[i].properties.Lat;
+                console.log(lat);
+                var lng = data.features[i].properties.Long;
+                console.log(lng);
+                locs.push({
+                    "name": data.features[i].properties.NAME, 
+                    "position": {"lat": lat, "lng": lng},
+                    
+                    
+                });
+                console.log(locs);
             }
-            console.log(list);
-            //filter array for unique location names
-            //locs = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()
-            //console.log(locs);
+
+            //loop through array of and place markers on map
+            for (i=0; i<locs.length; i++){
+                console.log(locs[i].position);
+                marker = new google.maps.Marker({
+                    position: locs[i].position,
+                    map: map,
+
+                })
+            }
+            
+                
+            console.log(locs);
+            //filter array for unique location names; use with SHORT_NAME
+            //ulist = $.unique(list);  //if updating to 3.0 jQuery use $.uniqueSort()   
+            //console.log(ulist.length);
             
             //make array of objects with name property
-            locs = [];
-            for (i=0; i<list.length; i++){
-                locs.push({"name": list[i]});              
+            /*locs = [];
+            for (i=0; i<ulist.length; i++){
+                locs.push({"name": ulist[i]});              
             }
-            console.log(locs);
+            console.log(locs);*/
             
             obsarray(locs);      
             console.log(obsarray());
+             
+            
             
         }
     });
 }   
 
-
+/*function removeMarkers(){
+    map.data.forEach(function(feature){
+        //add filter constraints
+        map.data.remove(feature);
+    });
+}*/
 
     
 //VIEW MODEL  (set up KO) 
@@ -111,16 +151,25 @@ function appViewModel(locations) {
     self.filter = ko.observable();
     self.filtered = ko.computed(function(){
          //if self.filter is empty, return the obs array
-        console.log("kocomputed");
         if (!self.filter()){
             return self.OAlocations();
         } else {
+            //removeMarkers();
             var filter = self.filter().toLowerCase();
             return ko.utils.arrayFilter(self.OAlocations(), function(item){
             return item.name.toLowerCase().indexOf(filter) > -1;
             });
+            
+
         }
+
+
     });
+
+
+    /*function clearList(){
+        console.log("it works - I hate KO!!!!")
+    }*/
 
 
     
