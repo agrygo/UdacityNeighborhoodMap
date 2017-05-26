@@ -30,6 +30,8 @@ function initMap(){
     });
 
     //getData();
+    ko.options.useOnlyNativeEvents = true;  //use KO native event binding and not JQuery
+
     ko.applyBindings(new appViewModel());
 }
 
@@ -153,6 +155,11 @@ function getData(obsarray){
     });
 }   
 
+function showSelected(data) {
+    console.log("hit");
+    console.log(data);
+}
+
 /*function removeMarkers(){
     map.data.forEach(function(feature){
         //add filter constraints
@@ -195,13 +202,13 @@ function appViewModel(locations) {
             var filter = self.filter().toLowerCase();
             return ko.utils.arrayFilter(self.OAlocations(), function(item){
             return item.name.toLowerCase().indexOf(filter) > -1;
-            });
-            
-
+            });          
         }
-
-
     });
+
+    self.selectedItem = ko.observableArray();
+    showSelected(self.selectedItem);
+    
 
 
     /*function clearList(){
