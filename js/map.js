@@ -72,28 +72,54 @@ function getData(obsarray){
             locs = [];
             for (i=0; i<data.features.length; i++){
                 var lat = data.features[i].properties.Lat;
-                console.log(lat);
                 var lng = data.features[i].properties.Long;
-                console.log(lng);
+                
                 locs.push({
                     "name": data.features[i].properties.NAME, 
+                    "address": data.features[i].properties.ADDRESS,
+                    "phone": data.features[i].properties.PHONE,
                     "position": {"lat": lat, "lng": lng},
-                    
-                    
                 });
-                console.log(locs);
             }
 
             //loop through array of and place markers on map
             for (i=0; i<locs.length; i++){
-                console.log(locs[i].position);
                 marker = new google.maps.Marker({
                     position: locs[i].position,
                     map: map,
+                });
 
-                })
+              /*  var contentInfo = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
+                console.log(contentInfo);*/
+
+               /* infoWindow = new google.maps.InfoWindow({
+                    content: contentInfo
+                });*/
+
+                /*var anchor = new google.maps.MVCObject();
+                anchor.set("position", event.latLng);
+                //infoWindow.open(map, anchor);
+                marker.addListener('click', function(marker, i){
+                    infoWindow = new google.maps.InfoWindow()
+;                    infoWindow.setContent(contentInfo)
+                    infoWindow.open(map, anchor);
+                });*/
+
+            //marker info windows
+                var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i){
+                    return function() {
+                        content = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
+                        console.log(content);
+                        infoWindow.setContent(content);
+                        infoWindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                //map.fitBounds(bounds);     
             }
-            
+        
                 
             console.log(locs);
             //filter array for unique location names; use with SHORT_NAME
