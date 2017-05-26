@@ -6,6 +6,8 @@ var locs;
 var locations;
 var OAlocations;
 var obsarray;
+var defaultIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"; 
+var clickIcon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
 
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
@@ -86,6 +88,7 @@ function getData(obsarray){
             for (i=0; i<locs.length; i++){
                 marker = new google.maps.Marker({
                     position: locs[i].position,
+                    icon: defaultIcon,
                     map: map,
                 });
 
@@ -116,6 +119,14 @@ function getData(obsarray){
                         infoWindow.open(map, marker);
                     }
                 })(marker, i));
+
+                marker.addListener('mouseover', function(){
+                    this.setIcon(clickIcon);
+                });
+
+                marker.addListener('mouseout', function(){
+                    this.setIcon(defaultIcon);
+                });
 
                 //map.fitBounds(bounds);     
             }
