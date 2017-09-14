@@ -1,13 +1,18 @@
 var map;
 //var names = [];
 var mapfeatures;
+var marker;
 var list = [];
+var markers = [];
+var i;
 var locs; 
 var locations;
 var OAlocations;
 var obsarray;
+var infoWindow;
 var defaultIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"; 
 var clickIcon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+
 
 /*var arcgis = 'CountyBuildings.json';
 var FeatureCollection = {
@@ -79,10 +84,12 @@ function getData(obsarray){
                 var lng = data.features[i].properties.Long;
                 
                 locs.push({
+                    "id": data.features[i].properties.FID,
                     "name": data.features[i].properties.NAME, 
                     "address": data.features[i].properties.ADDRESS,
                     "phone": data.features[i].properties.PHONE,
                     "position": {"lat": lat, "lng": lng},
+                    "setVisible": true,
                 });
             }
 
@@ -112,8 +119,8 @@ function getData(obsarray){
 
             //marker info windows
                 var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-                google.maps.event.addListener(marker, 'click', (function(marker, i){
+                createMarkers(marker, i);
+                /*google.maps.event.addListener(marker, 'click', (function(marker, i){
                     return function() {
                         content = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
                         console.log(content);
@@ -128,7 +135,7 @@ function getData(obsarray){
 
                 marker.addListener('mouseout', function(){
                     this.setIcon(defaultIcon);
-                });
+                });*/
 
                 //map.fitBounds(bounds);     
             }
@@ -148,17 +155,61 @@ function getData(obsarray){
             
             obsarray(locs);      
             console.log(obsarray());
-             
+            
             
             
         }
     });
 }   
 
-function showSelected(data) {
-    console.log("hit");
-    console.log(data);
+function createMarkers(marker, i){
+    //TODO fix "TypeError: Cannot read property 'name' of undefined" when location clicked a 2nd time
+    google.maps.event.addListener(marker, 'click', (function(marker, i){
+                    return function() {
+                        content = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
+                        console.log(content);
+                        infoWindow.setContent(content);
+                        infoWindow.open(map, marker);
+                        for (i = 0; i < markers.length; i++){
+                            markers[i].setIcon(defaultIcon);
+                        }
+                        marker.setIcon(clickIcon);
+                        
+                    };
+                })(marker, i));
+                markers.push(marker);
+
+
+                /*marker.addListener('mouseover', function(){
+                    this.setIcon(clickIcon);
+                });*/
+
+                /*marker.addListener('mouseout', function(){
+                    this.setIcon(defaultIcon);
+                });*/
+}   
+
+//show popup for location clicked in list
+function showSelected(data) {  
+    console.log(data.length);
+    if (data.length === 0){
+        return;
+    } else {    
+        console.log("hit");
+        console.log(data);  
+        infoWindow.close();
+        infoWindow = new google.maps.InfoWindow();
+
+        content = "<b>" + data.name + "</b><br>" + data.address + "<br>" + "<a href='tel:+" + data.phone + "'>" + data.phone + "</a>";
+        console.log(content);
+        infoWindow.setContent(content);
+        var anchor = new google.maps.MVCObject();
+        anchor.set("position", data.position);
+        infoWindow.open(map, anchor);
+    }
 }
+
+
 
 /*function removeMarkers(){
     map.data.forEach(function(feature){
@@ -189,26 +240,55 @@ function appViewModel(locations) {
         infoWindow.open(map, anchor);
     });
 
+    self.allPlaces = [];
+
     self.OAlocations = ko.observableArray();
     getData(self.OAlocations);
 
-    self.filter = ko.observable();
+
+
+    self.filter = ko.observable('');
     self.filtered = ko.computed(function(){
          //if self.filter is empty, return the obs array
         if (!self.filter()){
+            //set all markers to visible  -->  setVisible(true)
+            for (i = 0; i < self.OAlocations().length; i++){
+                if (self.OAlocations()[i].name.toLowerCase().indexOf(filter) !== -1) {
+                    self.OAlocations()[i].setVisible = true;    
+                    self.allPlaces.push(self.OAlocations()[i]);
+                    console.log(self.allPlaces);      
+                    return self.allPlaces[i].name.toLowerCase().indexOf(filter) !== -1;          
+                }  else {
+                   self.OAlocations()[i].setVisible = false;
+                   //console.log(self.OAlocations()[i]);
+                }
+                
+            }
+            console.log(self.OAlocations());
             return self.OAlocations();
         } else {
             //removeMarkers();
             var filter = self.filter().toLowerCase();
-            return ko.utils.arrayFilter(self.OAlocations(), function(item){
+            //self.allPlaces.push(self.OAlocations());
+            //console.log(self.allPlaces);
+            //self.OAlocations.removeAll();
+            console.log(self.OAlocations().length); 
+            
+            
+            
+
+            /*return ko.utils.arrayFilter(self.OAlocations(), function(item){
             return item.name.toLowerCase().indexOf(filter) > -1;
-            });          
-        }
+            });*/
+            
+
+                    
+        };
     });
 
-    self.selectedItem = ko.observableArray();
-    showSelected(self.selectedItem);
     
+
+
 
 
     /*function clearList(){
