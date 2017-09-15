@@ -4,7 +4,6 @@ var mapfeatures;
 var marker;
 var list = [];
 var markers = [];
-var i;
 var locs; 
 var locations;
 var OAlocations;
@@ -191,6 +190,9 @@ function createMarkers(marker, i){
 
 //show popup for location clicked in list
 function showSelected(data) {  
+    for (i = 0; i < markers.length; i++){
+        markers[i].setIcon(defaultIcon);
+    }
     console.log(data.length);
     if (data.length === 0){
         return;
@@ -198,7 +200,9 @@ function showSelected(data) {
         console.log("hit");
         console.log(data);  
         infoWindow.close();
-        infoWindow = new google.maps.InfoWindow();
+        infoWindow = new google.maps.InfoWindow({
+            pixelOffset: new google.maps.Size(0,-20)  //negative y-offset sends the InfoWindow up
+        });
 
         content = "<b>" + data.name + "</b><br>" + data.address + "<br>" + "<a href='tel:+" + data.phone + "'>" + data.phone + "</a>";
         console.log(content);
@@ -206,6 +210,8 @@ function showSelected(data) {
         var anchor = new google.maps.MVCObject();
         anchor.set("position", data.position);
         infoWindow.open(map, anchor);
+        //TODO  change marker color 
+    
     }
 }
 
@@ -256,7 +262,6 @@ function appViewModel(locations) {
                 if (self.OAlocations()[i].name.toLowerCase().indexOf(filter) !== -1) {
                     self.OAlocations()[i].setVisible = true;    
                     self.allPlaces.push(self.OAlocations()[i]);
-                    console.log(self.allPlaces);      
                     return self.allPlaces[i].name.toLowerCase().indexOf(filter) !== -1;          
                 }  else {
                    self.OAlocations()[i].setVisible = false;
@@ -265,24 +270,35 @@ function appViewModel(locations) {
                 
             }
             console.log(self.OAlocations());
-            return self.OAlocations();
+            //populate location list in table
+            self.OAlocations().forEach(function(location){
+                if (location.marker){
+                    location.marker.setVisible(true);
+                }
+            });
+             return self.OAlocations();
         } else {
             //removeMarkers();
-            var filter = self.filter().toLowerCase();
-            //self.allPlaces.push(self.OAlocations());
+            var filter = self.filter().toLowerCase();  //filter = <input> text value
+            self.allPlaces.push(self.OAlocations());
             //console.log(self.allPlaces);
             //self.OAlocations.removeAll();
-            console.log(self.OAlocations().length); 
+            console.log(self.OAlocations());
             
             
-            
+            //display filter list based on input value
+            return ko.utils.arrayFilter(self.OAlocations(), function(item){
+            var textFilter = item.name.toLowerCase().indexOf(filter) > -1;
+            return textFilter
 
-            /*return ko.utils.arrayFilter(self.OAlocations(), function(item){
-            return item.name.toLowerCase().indexOf(filter) > -1;
-            });*/
-            
+            if (textFilter > 0){
+                item.marker.setVisible(false);
+            } else {
+                item.marker.setVisible(true);
+            }
+            });
 
-                    
+                        
         };
     });
 
