@@ -165,8 +165,9 @@ function createMarkers(marker, i){
     //TODO fix "TypeError: Cannot read property 'name' of undefined" when location clicked a 2nd time
     google.maps.event.addListener(marker, 'click', (function(marker, i){
                     return function() {
-                        //content = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
-                        //infoWindow.setContent(content);
+                        console.log(locs)
+                        content = "<b>" + locs[i].name + "</b><br>" + locs[i].address + "<br>" + "<a href='tel:+" + locs[i].phone + "'>" + locs[i].phone + "</a>";
+                        infoWindow.setContent(content);
                         console.log(locs[i]);  //on 2nd click returns undefined.....?
                         infoWindow.setContent("test");
                         infoWindow.open(map, marker);
@@ -191,9 +192,9 @@ function createMarkers(marker, i){
 
 //show popup for location clicked in list
 function showSelected(data) {  
-    for (i = 0; i < markers.length; i++){
+    /*for (i = 0; i < markers.length; i++){
         markers[i].setIcon(defaultIcon);
-    }
+    }*/
     console.log(data.length);
     if (data.length === 0){
         return;
@@ -211,6 +212,7 @@ function showSelected(data) {
         var anchor = new google.maps.MVCObject();
         anchor.set("position", data.position);
         infoWindow.open(map, anchor);
+        
         //TODO  change marker color 
     
     }
