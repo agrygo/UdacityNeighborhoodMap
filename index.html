@@ -8,37 +8,15 @@
         <link rel="stylesheet" href="css/map.css">
     </head>
     <body>
-    <!-- <nav class="navbar navbar-default" style="margin-bottom: 0px;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p>test</p>
-            </div>
-        </div>    
-    </nav> -->
         <div class="container-fluid">
             <div class="sites-view">
                 <p>Garfield County Offices</p>
-                <p>Filter: <input data-bind="textInput: filter"/></p><!-- <button data-bind="click: clearList">Clear</button>  -->
-
+                <p>Filter: <input data-bind="textInput: filter"/></p>
                 <table data-bind="foreach: filtered">
                     <tbody>
                         <td data-bind="text: name, click: showSelected"></td>
                     </tbody>    
                 </table>    
-                    
-                    <!-- <div id="sites" class="panel">
-                        <p>test</p>
-                        <table>
-                            <tbody data-bind="foreach: shortnames">
-                                <tr> 
-                                    <td><select data-bind="options: $root.shortnames, optionsText: 'shortname'"></select></td>
-                                   
-                                </tr>
-                            </tbody>    
-                        </table>
-                    </div> -->
-
-               
             </div>     
             <div id="map"></div>
         </div>
@@ -46,10 +24,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script> 
-        <!-- <script src="https://unpkg.com/terraformer@1.0.7"></script>
-        <script src="https://unpkg.com/terraformer-arcgis-parser@1.0.5"></script>   -->
         <script src="js/fontawesome-markers.min.js"></script> 
-        <script src="js/map_js.js"></script>
+        <script src="js/map.js"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBhDl-AEcTV0ssX5zLF8HARkRnWX1Pc-xI&v=3&callback=initMap">
         </script>
