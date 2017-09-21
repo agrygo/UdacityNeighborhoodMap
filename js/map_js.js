@@ -13,6 +13,7 @@ var defaultIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
 var clickIcon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
 var appViewModel;
 var infoWindow;
+var selectMarker;
 
 //VIEW
 function initMap() {
@@ -83,6 +84,9 @@ function getData(obsarray) {
         })
       });
 
+      obsarray(locs);      
+      console.log(obsarray());
+
     }
   });
 }
@@ -102,9 +106,15 @@ function getData(obsarray) {
 
 //show popup for location clicked in list
 function showSelected(data) {
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setIcon(defaultIcon);
+  if (selectMarker) {
+    console.log(selectMarker);  
+    selectMarker.setIcon(defaultIcon);
+    console.log(data);
   }
+  /*for (i = 0; i < data.length; i++) {
+    data.marker[i].setIcon(defaultIcon);
+  } */
+
   //console.log(data.length);
   if (data.length === 0) {
     return;
@@ -116,6 +126,7 @@ function showSelected(data) {
       pixelOffset: new google.maps.Size(0, -20) //negative y-offset sends the InfoWindow up
     });
 
+
     content = "<b>" + data.name + "</b><br>" + data.address + "<br>" + "<a href='tel:+" + data.phone + "'>" + data.phone + "</a>";
  //   console.log(content);
     infoWindow.setContent(content);
@@ -123,6 +134,13 @@ function showSelected(data) {
     anchor.set("position", data.position);
     infoWindow.open(map, anchor);
     //TODO  change marker color 
+    selectMarker = data.marker;
+    if(selectMarker){
+      //data.marker.setVisible(true);
+      selectMarker.setIcon(clickIcon);
+      console.log(selectMarker);
+      
+    }
 
   }
 }
@@ -155,17 +173,13 @@ function AppViewModel(locations) {
 
   self.filter = ko.observable('');
   self.filtered = ko.computed(function() {
-    debugger;
     //if self.filter is empty, return the obs array
-    var filter = self.filter().toLowerCase(); //filter = <input> text value
-    if (!self.filter()){
+        if (!self.filter()){
             //set all markers to visible  -->  setVisible(true)
-            console.log (self.OAlocations());
             for (i = 0; i < self.OAlocations().length; i++){
                 if (self.OAlocations()[i].name.toLowerCase().indexOf(filter) !== -1) {
                     self.OAlocations()[i].setVisible = true;    
                     self.allPlaces.push(self.OAlocations()[i]);
-                    console.log(self.allPlaces);
                     return self.allPlaces[i].name.toLowerCase().indexOf(filter) !== -1;          
                 }  else {
                    self.OAlocations()[i].setVisible = false;
@@ -181,6 +195,13 @@ function AppViewModel(locations) {
                 }
             });
              return self.OAlocations();
+        } else {
+            //removeMarkers();
+            var filter = self.filter().toLowerCase();  //filter = <input> text value
+            self.allPlaces.push(self.OAlocations());
+            //console.log(self.allPlaces);
+            //self.OAlocations.removeAll();
+            console.log(self.OAlocations());
         
 
 
