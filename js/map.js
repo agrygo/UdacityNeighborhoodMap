@@ -13,6 +13,7 @@ var clickIcon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
 var appViewModel;
 var infoWindow;
 var selectMarker;
+var flickrURL;
 
 //VIEW
 function initMap() {
@@ -100,15 +101,62 @@ function showSelected(data) {
       pixelOffset: new google.maps.Size(0, -20) //negative y-offset sends the InfoWindow up
     });
     content = "<b>" + data.name + "</b><br>" + data.address + "<br>" + "<a href='tel:+" + data.phone + "'>" + data.phone + "</a>";
-    infoWindow.setContent(content);
+    /*infoWindow.setContent(content);
     var anchor = new google.maps.MVCObject();
     anchor.set("position", data.position);
     infoWindow.open(map, anchor);
     //change marker color
+    console.log(data.marker);
     selectMarker = data.marker;
+    console.log(data.position);
     data.marker.setIcon(clickIcon);
+    map.panTo(data.marker.position);
+    map.setZoom(17);
+*/
+    //flickr photos
+    /*use flickr.photos.search
+      https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84316c08976186b3699de0acd92ec172&lat=39.5461&lon=-107.782&per_page=10&format=json&nojsoncallback=1
+    */
+    var lat = data.position.lat;
+    var lng = data.position.lng;
+    console.log(lat + lng); 
+    var api_key = "84316c08976186b3699de0acd92ec172";
+    $.ajax({
+    dataType: 'json',
+    url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&lat=" + lat + "&lon=" + lng + "&per_page=10&format=json&nojsoncallback=1",
+    success: function(data) {
+      console.log(data);
+      //create array of photos
+      //photos = [];
+      for (i = 0; i < data.photos.photo.length; i++) {
+        var farm = data.photos.photo[i].farm;
+        var server = data.photos.photo[i].server;
+        var secret = data.photos.photo[i].secret;
+        var id = data.photos.photo[i].id;
+      }   
+      //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+      flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret +  ".jpg";
+      console.log(flickrURL);
+      setInfoWindow(flickrURL);
+    }
+    });
+
+    function setInfoWindow(flickrURL){
+      console.log(flickrURL);
+      infoWindow.setContent(content + "<br>" + "<img src=" + flickrURL + "/>");
+      var anchor = new google.maps.MVCObject();
+      anchor.set("position", data.position);
+      infoWindow.open(map, anchor);
+      //change marker color
+      console.log(data.marker);
+      selectMarker = data.marker;
+      console.log(data.position);
+      data.marker.setIcon(clickIcon);
+      map.panTo(data.marker.position);
+      map.setZoom(17);
+    }
   }
-}
+}    
 
 //VIEW MODEL  (set up KO) 
 function AppViewModel(locations) {
