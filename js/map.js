@@ -81,6 +81,9 @@ function getData(obsarray) {
       //push locs to observable array so locations populate
       obsarray(locs);      
       console.log(obsarray());
+    },
+    error: function(){
+      alert("Data error, failed to load from server.")
     }
   });
 }
@@ -173,7 +176,6 @@ $('#btn-close').click(function(){
   $('#map').css({"marginRight": "0"});
   $('.btn-map').css({'marginRight': '20px'});
 })
-
 
 //VIEW MODEL  (set up KO) 
 function AppViewModel(locations) {
