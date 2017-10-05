@@ -26,7 +26,7 @@ function initMap() {
   });
 
   ko.options.useOnlyNativeEvents = true; //use KO native event binding and not JQuery
-  appViewModel = new AppViewModel()
+  appViewModel = new AppViewModel();
   ko.applyBindings(appViewModel);
 }
 
@@ -38,7 +38,6 @@ function getData(obsarray) {
     url: 'CountyBuildings.geojson',
     //not passing any data: parameters such as query
     success: function(data) {
-      console.log(data.features.length);
       //create array of location names and marker info
       locs = [];
       for (i = 0; i < data.features.length; i++) {
@@ -75,15 +74,14 @@ function getData(obsarray) {
             locs[i].marker.setIcon(defaultIcon);
           }
           this.setIcon(clickIcon);
-        })
+        });
       });
 
       //push locs to observable array so locations populate
       obsarray(locs);      
-      console.log(obsarray());
     },
     error: function(){
-      alert("Data error, failed to load from server.")
+      alert("Data error, failed to load from server.");
     }
   });
 }
@@ -92,9 +90,7 @@ function getData(obsarray) {
 function showSelected(data) {
   //set previously selected marker to default color
   if (selectMarker) {
-    console.log(selectMarker);  
     selectMarker.setIcon(defaultIcon);
-    console.log(data);
   }
   if (data.length === 0) {
     return;
@@ -110,13 +106,11 @@ function showSelected(data) {
     */
     var lat = data.position.lat;
     var lng = data.position.lng;
-    console.log(lat + lng); 
     var api_key = "84316c08976186b3699de0acd92ec172";
     $.ajax({
     dataType: 'json',
     url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&lat=" + lat + "&lon=" + lng + "&per_page=10&format=json&nojsoncallback=1",
     success: function(data) {
-      console.log(data);
       //create array of photos
       //photos = [];
       for (i = 0; i < data.photos.photo.length; i++) {
@@ -124,16 +118,15 @@ function showSelected(data) {
         var server = data.photos.photo[i].server;
         var secret = data.photos.photo[i].secret;
         var id = data.photos.photo[i].id;
+
+        //flickr URL: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+        flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret +  ".jpg";
+        setInfoWindow(flickrURL);
       }   
-      //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-      flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret +  ".jpg";
-      console.log(flickrURL);
-      setInfoWindow(flickrURL);
     }
     });
 
-    function setInfoWindow(flickrURL){
-      console.log(flickrURL);
+    var setInfoWindow = function(flickrURL){
       infoWindow.setContent(content + "<br>Local flickr image<br>" + "<img src=" + flickrURL + "/>");
       //optional gallery display
       //$('#gallery').append("<img src=" + flickrURL + "style='max-height:125px;'" + "/>")
@@ -141,13 +134,11 @@ function showSelected(data) {
       anchor.set("position", data.position);
       infoWindow.open(map, anchor);
       //change marker color
-      console.log(data.marker);
       selectMarker = data.marker;
-      console.log(data.position);
       data.marker.setIcon(clickIcon);
       map.panTo(data.marker.position);
       map.setZoom(17);
-    }
+    };
   }
 } 
 
@@ -163,7 +154,7 @@ $('#btn-close').click(function(){
   $('#panel-collapse').css({"width": "0"});
   $('#map').css({"marginRight": "0"});
   $('.btn-map').css({'marginRight': '20px'});
-})
+});
 
 //VIEW MODEL  (set up KO) 
 function AppViewModel(locations) {
@@ -177,7 +168,7 @@ function AppViewModel(locations) {
     name = event.feature.f.NAME;
     address = event.feature.f.ADDRESS;
     phone = event.feature.f.PHONE;
-    content = "<b>" + name + "</b><br>" + address + "<br>" + "<a href='tel:+" + phone + "'>" + phone + "</a>"
+    content = "<b>" + name + "</b><br>" + address + "<br>" + "<a href='tel:+" + phone + "'>" + phone + "</a>";
     infoWindow.setContent(content);
     var anchor = new google.maps.MVCObject();
     anchor.set("position", event.latLng);
@@ -195,10 +186,10 @@ function AppViewModel(locations) {
     if (!self.filter()){
         //set all markers to visible  -->  setVisible(true)
         for (i = 0; i < self.OAlocations().length; i++){
-            if (self.OAlocations()[i].name.toLowerCase().indexOf(filter) !== -1) {
+            if (self.OAlocations()[i].name.toLowerCase().indexOf(self.filter) !== -1) {
                 self.OAlocations()[i].setVisible = true;    
                 self.allPlaces.push(self.OAlocations()[i]);
-                return self.allPlaces[i].name.toLowerCase().indexOf(filter) !== -1;          
+                return self.allPlaces[i].name.toLowerCase().indexOf(self.filter) !== -1;          
             }  else {
                self.OAlocations()[i].setVisible = false;
             }
@@ -223,6 +214,6 @@ function AppViewModel(locations) {
           item.marker.setVisible(matched);
           return matched; // true or false
         });
-    };
+    }
   });
 }
