@@ -104,18 +104,6 @@ function showSelected(data) {
       pixelOffset: new google.maps.Size(0, -20) //negative y-offset sends the InfoWindow up
     });
     content = "<b>" + data.name + "</b><br>" + data.address + "<br>" + "<a href='tel:+" + data.phone + "'>" + data.phone + "</a>";
-    /*infoWindow.setContent(content);
-    var anchor = new google.maps.MVCObject();
-    anchor.set("position", data.position);
-    infoWindow.open(map, anchor);
-    //change marker color
-    console.log(data.marker);
-    selectMarker = data.marker;
-    console.log(data.position);
-    data.marker.setIcon(clickIcon);
-    map.panTo(data.marker.position);
-    map.setZoom(17);
-*/
     //flickr photos
     /*use flickr.photos.search
       https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84316c08976186b3699de0acd92ec172&lat=39.5461&lon=-107.782&per_page=10&format=json&nojsoncallback=1
@@ -146,7 +134,7 @@ function showSelected(data) {
 
     function setInfoWindow(flickrURL){
       console.log(flickrURL);
-      infoWindow.setContent(content + "<br>" + "<img src=" + flickrURL + "/>");
+      infoWindow.setContent(content + "<br>Local flickr image<br>" + "<img src=" + flickrURL + "/>");
       //optional gallery display
       //$('#gallery').append("<img src=" + flickrURL + "style='max-height:125px;'" + "/>")
       var anchor = new google.maps.MVCObject();
