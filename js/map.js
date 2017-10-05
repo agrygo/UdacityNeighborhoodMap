@@ -19,10 +19,10 @@ var flickrURL;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
-      lat: 39.563513,
-      lng: -107.546957
+      lat: 39.55927808610271, 
+      lng: -107.24208639453127
     }, //approx center in New Castle
-    zoom: 10
+    zoom: 9
   });
 
   ko.options.useOnlyNativeEvents = true; //use KO native event binding and not JQuery
@@ -144,6 +144,8 @@ function showSelected(data) {
     function setInfoWindow(flickrURL){
       console.log(flickrURL);
       infoWindow.setContent(content + "<br>" + "<img src=" + flickrURL + "/>");
+      //optional gallery display
+      //$('#gallery').append("<img src=" + flickrURL + "style='max-height:125px;'" + "/>")
       var anchor = new google.maps.MVCObject();
       anchor.set("position", data.position);
       infoWindow.open(map, anchor);
@@ -156,7 +158,22 @@ function showSelected(data) {
       map.setZoom(17);
     }
   }
-}    
+} 
+
+//show side nav panel
+$('#btn-panel').click(function(){
+  $('#panel-collapse').css({"width": "310px"});
+  $('#map').css({"marginRight": "300px"});
+  $('.btn-map').css({'marginRight': '300px'});
+});
+
+//close side nav panel
+$('#btn-close').click(function(){
+  $('#panel-collapse').css({"width": "0"});
+  $('#map').css({"marginRight": "0"});
+  $('.btn-map').css({'marginRight': '20px'});
+})
+
 
 //VIEW MODEL  (set up KO) 
 function AppViewModel(locations) {

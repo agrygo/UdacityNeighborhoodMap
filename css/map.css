@@ -14,23 +14,57 @@ html, body {
 #map {
     bottom:0px;
     height: 100%;
-    right: 250px;
+    right: -10px;
     position: absolute;
     left: 0px;
+    transition: margin-right .5s;
+}
+
+/*.img-gallery {
+    bottom: 0px;    
+    background: #4e4b4b;
+    border: 1px solid #999;
+    height: 25vh;
+    line-height: 35px;
+    padding: 10px 10px 30px 10px;
+    width: 50vw;
+    left: 25vh;
+    z-index: 1000;
+    position: absolute;
+    
+}*/
+
+.btn-map {
+    width: 40px;
+    height: 40px;
+    z-index: 1500;
+    right: 10px;
+    top: 2px;
+    position: absolute;
 }
 
 .sites-view {
-    background: #fff;
+    background: #4e4b4b;
+    color: #fff;
     border: 1px solid #999;
     height: 100%;
     line-height: 35px;
     padding: 10px 10px 30px 10px;
     text-align: left;
-    width: 300px;
-    right: 0px;
+    width: 0px;
+    right: -20px;
     z-index: 1000;
+    position: fixed;
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.closebtn {
     position: absolute;
-    overflow-y: scroll;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-right: 50px;
 }
 
 .panel {
@@ -46,3 +80,6 @@ html, body {
 td {
     font-size: 12px;
 }
+
+
+
