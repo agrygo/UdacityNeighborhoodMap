@@ -165,10 +165,10 @@ function AppViewModel(locations) {
 
   //click event for markers and set infoWindow data
   map.data.addListener('click', function(event) {
-    name = event.feature.f.NAME;
+    loc = event.feature.f.NAME;
     address = event.feature.f.ADDRESS;
     phone = event.feature.f.PHONE;
-    content = "<b>" + name + "</b><br>" + address + "<br>" + "<a href='tel:+" + phone + "'>" + phone + "</a>";
+    content = "<b>" + loc + "</b><br>" + address + "<br>" + "<a href='tel:+" + phone + "'>" + phone + "</a>";
     infoWindow.setContent(content);
     var anchor = new google.maps.MVCObject();
     anchor.set("position", event.latLng);
