@@ -21,7 +21,9 @@
                     <p>Filter: <input data-bind="textInput: filter" style="border-radius: 5px; color: #000;"/></p>
                     <table data-bind="foreach: filtered">
                         <tbody>
-                            <td data-bind="text: name, click: showSelected"></td>
+                            <tr>
+                                <td data-bind="text: name, click: showSelected"></td>
+                            </tr>
                         </tbody>    
                     </table>    
                 </div>
