@@ -14,6 +14,8 @@ var appViewModel;
 var infoWindow;
 var selectMarker;
 var flickrURL;
+var photo_title;
+var photo_id;
 
 //VIEW
 function initMap() {
@@ -108,26 +110,31 @@ function showSelected(data) {
     var lng = data.position.lng;
     var api_key = "84316c08976186b3699de0acd92ec172";
     $.ajax({
-    dataType: 'json',
-    url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&lat=" + lat + "&lon=" + lng + "&per_page=10&format=json&nojsoncallback=1",
-    success: function(data) {
-      //create array of photos
-      //photos = [];
-      for (i = 0; i < data.photos.photo.length; i++) {
-        var farm = data.photos.photo[i].farm;
-        var server = data.photos.photo[i].server;
-        var secret = data.photos.photo[i].secret;
-        var id = data.photos.photo[i].id;
+      dataType: 'json',
+      url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&lat=" + lat + "&lon=" + lng + "&per_page=10&format=json&nojsoncallback=1",
+      success: function(data){
+        console.log(data);
+        //create array of photos
+        //photos = [];
+        for (i = 0; i < data.photos.photo.length; i++) {
+          var farm = data.photos.photo[i].farm;
+          var server = data.photos.photo[i].server;
+          var secret = data.photos.photo[i].secret;
+          photo_id = data.photos.photo[i].id;
+          photo_title = data.photos.photo[i].title;
 
-        //flickr URL: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-        flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret +  ".jpg";
-        setInfoWindow(flickrURL);
-      }   
-    }
+          //flickr URL: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+          flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + photo_id + "_" + secret +  ".jpg";
+          setInfoWindow(flickrURL);
+        }   
+      }
+      error: function(){
+        alert("error loading images from Flickr");
+      }
     });
 
     var setInfoWindow = function(flickrURL){
-      infoWindow.setContent(content + "<br>Local flickr image<br>" + "<img src=" + flickrURL + "/>");
+      infoWindow.setContent(content + "<br>Flickr image " + "'" + photo_title + "'" + "<br><img src=" + flickrURL + "/>");
       //optional gallery display
       //$('#gallery').append("<img src=" + flickrURL + "style='max-height:125px;'" + "/>")
       var anchor = new google.maps.MVCObject();
