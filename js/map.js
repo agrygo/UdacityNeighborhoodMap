@@ -33,6 +33,11 @@ function initMap() {
 }
 
 //MODEL
+function googleMapsError(){
+  alert("Google Maps failed to load");
+}
+
+
 function getData(obsarray) {
   //ajax call to get feature information from geojson file
   $.ajax({
@@ -113,10 +118,9 @@ function showSelected(data) {
       dataType: 'json',
       url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&lat=" + lat + "&lon=" + lng + "&per_page=10&format=json&nojsoncallback=1",
       success: function(data){
-        console.log(data);
         //create array of photos
         //photos = [];
-        for (i = 0; i < data.photos.photo.length; i++) {
+        for (i = 0, il = data.photos.photo.length; i < il; i++) {
           var farm = data.photos.photo[i].farm;
           var server = data.photos.photo[i].server;
           var secret = data.photos.photo[i].secret;
@@ -126,8 +130,8 @@ function showSelected(data) {
           //flickr URL: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
           flickrURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + photo_id + "_" + secret +  ".jpg";
           setInfoWindow(flickrURL);
-        }   
-      }
+        }
+      },     
       error: function(){
         alert("error loading images from Flickr");
       }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="initial-scale=1.0">
         <meta charset="utf-8">
         <title>Garfield County Offices &amp; Parking</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,19 +14,23 @@
             <a class="btn btn-primary btn-map" id="btn-panel" aria-label="panel open button">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
             </a>
-            <div id="panel-collapse" class="sites-view">
-                <a href="javascript:void(0)" class="closebtn" id="btn-close">&times;</a>
-                <p>Garfield County Offices</p>
-                <p>Filter: <input data-bind="textInput: filter" style="border-radius: 5px; color: #000;"/></p>
-                <table data-bind="foreach: filtered">
-                    <tbody>
-                        <td data-bind="text: name, click: showSelected"></td>
-                    </tbody>    
-                </table>    
-            </div>
+            <aside>
+                <div id="panel-collapse" class="sites-view">
+                    <a href="javascript:void(0)" class="closebtn" id="btn-close">&times;</a>
+                    <p>Garfield County Offices</p>
+                    <p>Filter: <input data-bind="textInput: filter" style="border-radius: 5px; color: #000;"/></p>
+                    <table data-bind="foreach: filtered">
+                        <tbody>
+                            <td data-bind="text: name, click: showSelected"></td>
+                        </tbody>    
+                    </table>    
+                </div>
+            </aside>    
             <!-- optional gallery for flickr images -->
             <!-- <div id="gallery" class="img-gallery"></div>  -->   
-            <div id="map"></div>
+            <main>
+                <div id="map"></div>
+            </main>                
         </div>
       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -35,7 +39,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script> 
         <script src="js/map.js"></script>
         <script async defer
-            src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBhDl-AEcTV0ssX5zLF8HARkRnWX1Pc-xI&v=3&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBhDl-AEcTV0ssX5zLF8HARkRnWX1Pc-xI&v=3&callback=initMap" onerror="googleMapsError()">
         </script>
     </body>
 </html>
